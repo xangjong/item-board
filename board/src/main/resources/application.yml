@@ -1,0 +1,33 @@
+spring:
+  thymeleaf:
+    cache: 'false'
+  main:
+    allow-bean-definition-overriding: 'false'
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: '1234'
+    url: jdbc:mysql://localhost:3306/boarddb?serverTimezone-UTC
+  profiles:
+    include: aws
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .html
+  devtools:
+    livereload:
+      enabled: 'true'
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+  port: '8080'
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
