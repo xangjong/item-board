@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+  </style></head><body>
+<div class="container" align="center">
+  <h2 class="text-primary">게시글 수정</h2>
+  <form action="boardUpdate" method="post">
+    <input type="hidden" name="bno" th:value="${board.bno}">
+    <!-- <input type="hidden" name="reg_date" value="${board.reg_date}">
+     <input type="hidden" name="readCnt" value="${board.readCnt}">-->
+    <table class="table table-bordered">
+      <tr class="success"><th>제목</th><td><input type="text" name="title" th:value="${board.title}"
+                                                required="required" autofocus="autofocus" class="form-control"></td></tr>
+      <tr class="info"><th>내용</th><td><textarea rows="5" class="form-control" th:value="${board.content}"
+                                                name="content" required="required">[[${board.content}]]</textarea></td></tr>
+      <tr class="active"><td colspan="2" align="center">
+        <input type="submit" class="btn btn-warning" value="수정">
+        <button onclick="location.href='boardDetail.html'"
+                th:onclick="|location.href='@{/boardList/{bno}(bno=${board.bno})}'|"
+                type="button">취소</button>
+      </td></tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

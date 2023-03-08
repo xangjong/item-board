@@ -2,8 +2,10 @@ package com.item.board.controller;
 
 import com.item.board.model.MemberVO;
 import com.item.board.service.MemberService;
+import com.item.board.service.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -12,11 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@Component
 @RequiredArgsConstructor
 public class MemberController {
 
     private final PasswordEncoder passwordEncoder;
-    private final MemberService memberService;
+    private final MemberServiceImpl memberService;
 
     // 회원가입
     @PostMapping(value = "/join")
@@ -29,7 +32,7 @@ public class MemberController {
         encodePw = passwordEncoder.encode(rawPw);
         memberVO.setMemberPw(encodePw);
 
-        memberService.insertUser(memberVO);
+        memberService.createUser(memberVO);
 
         return "redirect:/main";
     }
