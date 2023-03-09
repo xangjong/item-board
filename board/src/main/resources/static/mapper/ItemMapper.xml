@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.item.board.mapper.ItemMapper">
+
+    <select id="listAllItem" resultMap="com.item.board.dto.Item">
+        SELECT * FROM item ORDER BY itemNo
+    </select>
+
+
+    <insert id="insertItem" parameterType="com.item.board.dto.Item">
+        INSERT INTO TB_ITEM
+            (ITEM_NO, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, ITEM_IMAGE)
+        VALUES(#{itemNo},#{itemName},#{itemDetail},#{itemQuantity}, #{itemPrice}, #{itemImage});
+    </insert>
+
+    <!-- 도서 상세 정보 조회 : 1개 조회 -->
+    <select id="detailViewItem" parameterType="int" resultType="com.item.board.dto.Item">
+        SELECT * FROM item WHERE itemNo=#{itemNo}
+    </select>
+
+    <!-- 도서 정보 수정 -->
+    <update id="updateItem" parameterType="com.item.board.dto.Item">
+        UPDATE item
+        SET itemNo=#{itemNo},
+            itemName=#{itemName},
+            itemDetail=#{itemDetail},
+            itemQuantity=#{itemQuantity},
+            itemPrice=#{itemPrice},
+            itemImage=#{itemImage}
+        WHERE itemNo=#{itemNo}
+    </update>
+
+    <!-- 도서 정보 삭제 -->
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM item WHERE itemNo=#{itemNo}
+    </delete>
+
+    <!-- 도서 중복 확인 -->
+    <select id="itemNoCheck" parameterType="int" resultType="int">
+        SELECT itemNo FROM item WHERE itemNo=#{itemNo}
+    </select>
+
+    <!-- 도서 검색 -->
+    <select id="itemSearch" parameterType="hashmap" resultMap="itemResult">
+        SELECT * FROM item WHERE
+        <choose>
+            <when test="type !=null and type.equals('bookName')">
+                bookName LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+
+            <when test="type !=null and type.equals('bookPub')">
+                bookPub LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+        </choose>
+    </select>
+
+</mapper>

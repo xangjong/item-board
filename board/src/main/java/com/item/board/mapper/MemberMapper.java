@@ -1,8 +1,10 @@
-package com.item.board.service;
+package com.item.board.mapper;
 
 import com.item.board.dto.Member;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface MemberService {
+@Mapper
+public interface MemberMapper {
 
     //회원가입
     void createUser(Member member);

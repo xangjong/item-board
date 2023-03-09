@@ -1,27 +1,30 @@
 package com.item.board.service;
 
-import com.item.board.dao.IMemberDAO;
-import com.item.board.model.MemberVO;
+import com.item.board.mapper.MemberMapper;
+import com.item.board.dto.Member;
+import com.item.board.state.ROLE;
+import com.item.board.state.UserState;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    private final IMemberDAO iMemberDAO;
-
+    private final MemberMapper memberMapper;
 
     @Override
-    public MemberVO createUser(MemberVO memberVO) {
-        iMemberDAO.createUser(memberVO);
-        return memberVO;
+    public void createUser(Member member) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        member.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
+//        member.setUSER(ROLE.USER);
+//        member.setOFFICE(UserState.OFFICE);
+        memberMapper.createUser(member);
     }
 
     @Override
-    public void login(MemberVO memberVO) {
-        iMemberDAO.login(memberVO);
+    public void login(Member member) {
+        memberMapper.login(member);
     }
 }

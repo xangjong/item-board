@@ -1,6 +1,12 @@
 spring:
   thymeleaf:
-    cache: 'false'
+    prefix: classpath:templates/
+    suffix: .html
+    devtools:
+      restart:
+        enabled: 'false'
+      livereload:
+        enabled: 'true'
   main:
     allow-bean-definition-overriding: 'false'
   servlet:
@@ -12,22 +18,20 @@ spring:
     username: root
     password: '1234'
     url: jdbc:mysql://localhost:3306/boarddb?serverTimezone-UTC
-  profiles:
-    include: aws
-  output:
-    ansi:
-      enabled: always
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .html
   devtools:
     livereload:
       enabled: 'true'
 server:
   servlet:
-    session:
-      tracking-modes: cookie
   port: '8080'
-mybatis:
-  mapper-locations: classpath:mappers/**/*.xml
+  mybatis:
+    mapper-locations: classpath:mappers/**/*.xml
+    configuration:
+      map-underscore-to-camel-case: 'true'
+
+
+
+
+
+
+

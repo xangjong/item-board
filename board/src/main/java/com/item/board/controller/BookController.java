@@ -3,8 +3,8 @@ package com.item.board.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.item.board.model.BookVO;
-import com.item.board.service.BookService;
+import com.item.board.dto.Item;
+import com.item.board.service.ItemServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,23 +17,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BookController {
 	
 	final
-	BookService bookService;
+	ItemServiceImpl itemServiceImpl;
 
-	public BookController(BookService bookService) {
-		this.bookService = bookService;
+	public BookController(ItemServiceImpl itemServiceImpl) {
+		this.itemServiceImpl = itemServiceImpl;
 	}
 
 	//	인덱스 조회
-	@RequestMapping("/")
-	public String viewIndex() {
-		return "index";
-	}
+
 	
 // 	전체 도서 조회 요청 처리
 	@RequestMapping("/books/bookAllList")
 	public String viewBookAllList(Model model) {
 		// 서비스 클래스의 메소드 호출해서 결과 받아옴
-		ArrayList<BookVO> bookList = bookService.listAllBook();
+		ArrayList<Item> bookList = itemServiceImpl.listAllBook();
 		// 모델 설정
 		model.addAttribute("bookList", bookList);
 		return "books/bookAllListView"; // product 폴더의 productAllListView.jsp
@@ -47,8 +44,8 @@ public class BookController {
 	
 	// 도서 등록 : 도서 정보 DB 저장
 	@RequestMapping("/books/insertBook")
-	public String insertProduct(BookVO book) {
-		bookService.insertBook(book);
+	public String insertProduct(Item book) {
+		itemServiceImpl.insertBook(book);
 		
 		// DB에 데이터 저장한 후 전체 상품 조회 화면으로 포워딩
 		return "redirect:./bookAllList";
@@ -57,7 +54,7 @@ public class BookController {
 	// 도서 상세 정보 조회 : 1개 상품 조회
 	@RequestMapping("/books/bookDetailView/{bookNo}")
 	public String detailViewProduct(@PathVariable String bookNo, Model model) {
-		BookVO book = bookService.detailViewBook(bookNo);
+		Item book = itemServiceImpl.detailViewBook(bookNo);
 		model.addAttribute("book", book);
 		return "books/bookDetailView";
 	}
@@ -67,15 +64,15 @@ public class BookController {
 	public String updateBookForm(@PathVariable String bookNo, Model model) {
 		// 수정할 상품번호 받아서, detailViewProduct()메소드 호출하면서 전달하고
 		// 해당 상품 정보 (1개) 받아서 모델 설정
-		BookVO book = bookService.detailViewBook(bookNo);
+		Item book = itemServiceImpl.detailViewBook(bookNo);
 		model.addAttribute("book", book);
 		return "books/bookUpdateForm";
 	}
 	
 	// 수정 내용 DB 저장
 	@RequestMapping("/books/updateBook")
-	public String updateProduct(BookVO book) {
-		bookService.updateBook(book);
+	public String updateProduct(Item book) {
+		itemServiceImpl.updateBook(book);
 		// DB에 수정된 데이터 저장한 후 전체 상품 조회 화면으로 포워딩
 		return "redirect:./bookAllList";
 	}
@@ -83,7 +80,7 @@ public class BookController {
 	// 도서 정보 삭제
 	@RequestMapping("/books/deleteBook/{bookNo}")
 	public String deleteProduct(@PathVariable String bookNo) {
-		bookService.deleteBook(bookNo);
+		itemServiceImpl.deleteBook(bookNo);
 		// 삭제한 후 전체 도서 조회 화면으로 포워딩
 		return "redirect:/books/bookAllList";
 	}
@@ -92,9 +89,9 @@ public class BookController {
 	// 도서 중복 확인
 	@ResponseBody
 	@RequestMapping("/books/bookNoCheck")
-	public String bookNoCheck(@RequestParam("bookNo") String bookNo) {
+	public String bookNoCheck(@RequestParam("bookNo") String itemNo) {
 		
-		String bookNo_result = bookService.bookNoCheck(bookNo);
+		String bookNo_result = itemServiceImpl.itemNoCheck()NoCheck(bookNo);
 		
 		String result ="use";
 		if(bookNo_result !=null)
@@ -112,7 +109,7 @@ public class BookController {
 	// 도서 검색 : 방법2
 	@RequestMapping("/books/bookSearch")
 	public String bookSearch(@RequestParam HashMap<String, Object> param, Model model){
-		ArrayList<BookVO> bookList = bookService.bookSearch(param);
+		ArrayList<Item> bookList = itemServiceImpl.bookSearch(param);
 		
 		model.addAttribute("bookList", bookList);
 		

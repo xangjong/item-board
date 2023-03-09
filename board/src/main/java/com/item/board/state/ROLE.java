@@ -1,6 +1,6 @@
 package com.item.board.state;
 
-public enum Right {
+public enum ROLE {
     USER,
     ADMIN
 }
