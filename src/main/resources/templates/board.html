@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h3>비품 리스트 조회</h3>
+<table>
+  <tr align="center">
+    <th>비품 번호</th>
+    <th>비품명</th>
+    <th>상세 설명</th>
+    <th>수량</th>
+    <th>가격</th>
+    <th>이미지</th>
+    <th>생성일</th>
+    <th>수정일</th>
+  </tr>
+
+  <tr th:each="board : ${boardList}">
+    <td th:text="${board.item_No}"></td>
+    <td th:text="${board.item_Name}"></td>
+    <td th:text="${board.item_Detail}"></td>
+    <td th:text="${board.item_Quantity}"></td>
+    <td th:text="${board.item_Price}"></td>
+    <td th:text="${board.item_Image}"></td>
+    <td th:text="${board.reg_DateTime}"></td>
+    <td th:text="${board.mod_DateTime}"></td>
+  </tr>
+</table>
+<button class="btn btn-primary float-end"
+        onclick="location.href='boardWrite.html'"
+        th:onclick="|location.href='@{/boardWrite}'|"
+        type="button">게시글 등록</button>
+</body>
+</html>
