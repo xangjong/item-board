@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <style type="text/css">
+        .err { color: red; font-weight: bold; }
+    </style></head><body>
+<div class="container" align="center">
+    <h2 class="text-primary">게시글 작성</h2>
+    <form action="boardWrite" method="post">
+        <table class="table table-bordered">
+            <tr class="success"><th>제목</th><td><input type="text" name="title"
+                                                      required="required" autofocus="autofocus" class="form-control"></td></tr>
+            <tr class="info"><th>내용</th><td><textarea rows="5" class="form-control"
+                                                      name="content" required="required"></textarea></td></tr>
+            <tr class="active"><td colspan="2" align="center">
+                <input type="submit" class="btn btn-warning"></td></tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

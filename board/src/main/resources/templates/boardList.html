@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+  </style></head><body>
+<div class="container" align="center">
+  <h2 class="text-primary">게시글 목록</h2>
+  <table class="table table-striped">
+    <tr class="success"><th>번호</th><th>제목</th><th>조회수</th><th>작성일</th></tr>
+    <tr th:if="${#lists.size(list)} > 0" th:each="board:${list}">
+      <td th:text="${board.bno}"></td>
+      <td><a th:href="@{/boardDetail(bno=${board.bno})}"
+             th:text="${board.title}" class="btn btn-sm btn-success"
+             th:title="${board.content}"></a></td>
+      <td th:text="${board.readCnt}"></td>
+      <td th:text="${board.reg_date}"></td></tr>
+    <tr th:unless="${#lists.size(list)} > 0">
+      <td colspan="4">데이터가 없습니다</td>
+    </tr>
+  </table>
+  <div align="center">
+    <a href="boardWrite" class="btn btn-info">글쓰기</a>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-end"
+              onclick="location.href='boardWrite.html'"
+              th:onclick="|location.href='@{/boardWrite}'|"
+              type="button">게시글 등록</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
