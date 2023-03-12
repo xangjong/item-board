@@ -12,10 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-
 @Component
 @Aspect
-public class LoggingAop {
+public class Logger {
     /* TODO
     point Cut과 Around를 사용하여 Controller의 각 API가 실행하는 시간을 로깅 출력
      */
