@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+  </style>
+</head><body>
+<div class="container" align="center">
+  <h2 class="text-primary">비품 정보 수정</h2>
+  <form method="post" action="/updateItem">
+  <table class="table table-striped">
+    <tr>
+      <th class="success">비품 번호</th>
+      <td>
+        <input type="text" name="item_No" th:value="${board.item_No}"
+                  th:readonly="readonly"
+                 id="item_No"
+                 required="required" class="form-control" ></td>
+    </tr>
+
+    <tr>
+    <th class="success">비품명</th>
+      <td><input type="text" name="item_Name" th:value="${board.item_Name}"
+                 id="item_Name"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+    <tr>
+      <th class="success">상세 설명</th>
+      <td><input type="text" name="item_Detail" th:value="${board.item_Detail}"
+                 id="item_Detail"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+    <tr>
+      <th class="success">수량</th>
+      <td><input type="text" name="item_Quantity" th:value="${board.item_Quantity}"
+                 id="item_Quantity"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+    <tr>
+      <th class="success">가격</th>
+      <td><input type="text" name="item_Price" th:value="${board.item_Price}"
+                 id="item_Price"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+    <tr>
+      <th class="success">이미지</th>
+      <td><input type="text" name="item_Image" th:value="${board.item_Image}"
+                 id="item_Image"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+    <tr>
+      <th class="success">등록일</th>
+      <td><input type="text" name="reg_DateTime"
+                 th:readonly="readonly"
+                 th:value="${#temporals.format(board.reg_DateTime, 'yyyy-MM-dd')}"
+                 id="reg_DateTime" required="required" autofocus="autofocus" class="form-control"></td>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="success">수정일</th>
+      <td><input type="text" name="reg_DateTime"
+                 th:readonly="readonly"
+                 th:value="${#temporals.format(board.mod_DateTime, 'yyyy-MM-dd')}"
+                 id="mod_DateTime" required="required" autofocus="autofocus" class="form-control"></td>
+      </td>
+    </tr>
+
+  </table>
+  <a href="/" class="btn btn-success">목록</a>
+    <input type="submit" class="btn btn-primary float-end" value="수정">
+    <button onclick="location.href='/detailItem.html'" class="btn btn-warning"
+            th:onclick="|location.href='@{/detailItem/{item_No}(item_No=${board.item_No})}'|"
+            type="button">취소</button>
+  </form>
+</div>
+</body>
+</html>

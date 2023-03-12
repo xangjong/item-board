@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+  </style>
+</head><body>
+<div class="container" align="center">
+  <h2 class="text-primary">비품 상세정보</h2>
+  <table class="table table-striped">
+    <tr>
+      <th class="success">비품 번호</th>
+      <td th:text="${board.item_No}"></td>
+    </tr>
+
+    <tr>
+    <th class="success">비품명</th>
+      <td th:text="${board.item_Name}"></td>
+    </tr>
+    <tr>
+      <th class="success">상세 설명</th>
+      <td th:text="${board.item_Detail}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">수량</th>
+      <td th:text="${board.item_Quantity}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">가격</th>
+      <td th:text="${board.item_Price}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">이미지</th>
+      <td th:text="${board.item_Image}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">등록일</th>
+      <td th:text="${board.reg_DateTime}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">수정일</th>
+      <td th:text="${board.mod_DateTime}"></td>
+    </tr>
+
+  </table>
+  <a href="/" class="btn btn-success">목록</a>
+  <button th:onclick="|location.href='@{/updateItem/(item_No=${board.item_No})}'|"
+          class="btn btn-primary float-end">수정</button>
+  <button th:onclick="|location.href='@{/deleteItem/{item_No}(item_No=${board.item_No})}'|"
+          class="btn btn-warning">삭제</button>
+
+
+</div>
+</body>
+</html>
