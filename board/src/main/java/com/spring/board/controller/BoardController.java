@@ -28,9 +28,9 @@ public class BoardController {
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
     // 비품 리스트 뷰
-    @RequestMapping("/")
+    @RequestMapping("boardList")
     public ModelAndView listAll(@RequestParam(value="pageNum", defaultValue ="1")
-                                    int currentPage) {
+                                int currentPage) {
         //총 레코드 수
         int count = boardService.getBoardCount();
 
@@ -103,5 +103,29 @@ public class BoardController {
         boardService.deleteItem(item_No);
         return "redirect:/";
     }
+
+    // 비품 상세 조회 폼
+    @GetMapping("itemSearchForm")
+    public String itemSearchForm(@RequestParam HashMap<String, Object> map, Model model) {
+        ArrayList<BoardDTO> list = boardService.getBoardList(map);
+        model.addAttribute("list", list);
+        return "itemSearchForm";
+    }
+
+    // 비품 상세 조회
+    @RequestMapping("itemSearch")
+    public String itemSearch(@RequestParam HashMap<String, Object> map,
+                             Model model){
+        logger.debug("map : " + map.toString());
+        ArrayList<BoardDTO> list = boardService.itemSearch(map);
+
+        model.addAttribute("list", list);
+
+        logger.debug("list" + list.toString());
+
+        return "itemSearchView";
+    }
+
+
 
 }

@@ -54,7 +54,7 @@ public class PagingUtil {
         // 이전 block 페이지
         page = new StringBuffer();
         if (currentPage > pageCount) {
-            page.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + sub_url +">");
+            page.append("<a th:href="+pageUrl+"?pageNum="+ (startPage - 1) + sub_url +">");
             page.append("[이전]");
             page.append("</a>");
         }
@@ -68,7 +68,7 @@ public class PagingUtil {
                 page.append(i);
                 page.append("</span></b>");
             } else {
-                page.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
+                page.append("&nbsp;<a th:href='"+pageUrl+"?pageNum=");
                 page.append(i);
                 page.append(sub_url+"'>");
                 page.append(i);
@@ -78,7 +78,7 @@ public class PagingUtil {
         }
         // 다음 block 페이지
         if (totalPage - startPage >= pageCount) {
-            page.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + sub_url +">");
+            page.append("<a th:href="+pageUrl+"?pageNum="+ (endPage + 1) + sub_url +">");
             page.append("[다음]");
             page.append("</a>");
         }

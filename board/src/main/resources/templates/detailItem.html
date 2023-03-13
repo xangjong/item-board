@@ -9,6 +9,7 @@
 
   <style type="text/css">
     .err { color: red; font-weight: bold; }
+    .text-primary { font-weight: bold; }
   </style>
 </head><body>
 <div class="container" align="center">
@@ -17,6 +18,11 @@
     <tr>
       <th class="success">비품 번호</th>
       <td th:text="${board.item_No}"></td>
+    </tr>
+
+    <tr>
+      <th class="success">비품 코드</th>
+      <td th:text="${board.item_Code}"></td>
     </tr>
 
     <tr>
@@ -36,11 +42,6 @@
     <tr>
       <th class="success">가격</th>
       <td th:text="${board.item_Price}"></td>
-    </tr>
-
-    <tr>
-      <th class="success">이미지</th>
-      <td th:text="${board.item_Image}"></td>
     </tr>
 
     <tr>

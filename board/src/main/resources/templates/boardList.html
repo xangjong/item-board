@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8">
-  <title>Insert title here</title>
+  <title>비품 리스트 조회 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
   <style type="text/css">
     .err { color: red; font-weight: bold; }
+    .text-primary { font-weight: bold; }
+    .table-striped {margin-top:30px; color:#000; background:#5cb85c;}
+    .success>th, .itemList>td {text-align: center; background: #3e8f3e;}
+    .itemList>td>a { color:#fff;}
+    #noList {text-align: center; color:#fff;}
   </style>
 </head>
 <body>
@@ -15,29 +21,39 @@
   <table class="table table-striped">
   <tr class="success">
     <th>비품 번호</th>
+    <th>비품 코드</th>
     <th>비품명</th>
     <th>상세 설명</th>
     <th>수량</th>
     <th>가격</th>
     <th>등록일</th>
   </tr>
-
-  <tr th:each="board:${list}">
+  <tr th:each="board:${list}" th:if="${!#lists.isEmpty(list)}" class="itemList btn-success">
     <td th:text="${board.item_No}"></td>
+    <td th:text="${board.item_Code}"></td>
     <td>
       <a th:href="@{/detailItem/{item_No}(item_No=${board.item_No})}"
          th:text="${board.item_Name}"
         th:title="${board.item_Detail}"
-         class="btn btn-sm btn-success"
-      ></a></td>
+      ></a>
+    </td>
     <td th:text="${board.item_Detail}"></td>
     <td th:text="${board.item_Quantity}"></td>
     <td th:text="${board.item_Price}"></td>
     <td th:text="${board.reg_DateTime}"></td>
   </tr>
 
+    <tr th:unless="${!#lists.isEmpty(list)}">
+      <td colspan="7" id="noList">등록된 비품이 없습니다.</td>
+    </tr>
+
 </table>
   <div class="align-center" th:text="${page}"></div>
+
+  <button class="btn btn-success"
+          th:onclick="|location.href='@{/itemSearchForm}'|"
+          type="button">조회</button>
+
   <button class="btn btn-primary float-end"
         onclick="location.href='insertItem.html'"
         th:onclick="|location.href='@{/insertItem}'|"

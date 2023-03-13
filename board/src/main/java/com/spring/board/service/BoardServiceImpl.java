@@ -21,8 +21,6 @@ public class BoardServiceImpl implements BoardService{
 
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-
-
     @Override
     public ArrayList<BoardDTO> getBoardList(HashMap<String, Object> map) {
         return boardMapper.getBoardList(map);

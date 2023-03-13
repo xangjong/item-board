@@ -2,17 +2,20 @@
 <!-- 백리향 jstl과 유사한 역할 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8">
-  <title>Insert title here</title>
+  <title>비품 정보 수정 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/item/updateItem.js}"></script>
+
   <style type="text/css">
     .err { color: red; font-weight: bold; }
+    .text-primary { font-weight: bold; }
   </style>
 </head><body>
 <div class="container" align="center">
   <h2 class="text-primary">비품 정보 수정</h2>
-  <form method="post" action="/updateItem">
+  <form method="post" action="/updateItem" id="updateItemFrm">
   <table class="table table-striped">
     <tr>
       <th class="success">비품 번호</th>
@@ -24,6 +27,14 @@
     </tr>
 
     <tr>
+      <th class="success">비품코드</th>
+      <td><input type="text" name="item_Code" th:value="${board.item_Code}"
+                 id="item_Code"
+                 required="required" autofocus="autofocus" class="form-control"></td>
+    </tr>
+
+
+    <tr>
     <th class="success">비품명</th>
       <td><input type="text" name="item_Name" th:value="${board.item_Name}"
                  id="item_Name"
@@ -33,8 +44,7 @@
     <tr>
       <th class="success">상세 설명</th>
       <td><input type="text" name="item_Detail" th:value="${board.item_Detail}"
-                 id="item_Detail"
-                 required="required" autofocus="autofocus" class="form-control"></td>
+                 id="item_Detail" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
@@ -48,13 +58,6 @@
       <th class="success">가격</th>
       <td><input type="text" name="item_Price" th:value="${board.item_Price}"
                  id="item_Price"
-                 required="required" autofocus="autofocus" class="form-control"></td>
-    </tr>
-
-    <tr>
-      <th class="success">이미지</th>
-      <td><input type="text" name="item_Image" th:value="${board.item_Image}"
-                 id="item_Image"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 

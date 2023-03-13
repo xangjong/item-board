@@ -12,7 +12,7 @@
     <!-- 비품 리스트 전체 조회-->
     <select id="getBoardList" parameterType="hashmap" resultType="com.spring.board.dto.BoardDTO">
 
-        SELECT ITEM_NO, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
+        SELECT ITEM_NO, ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
         FROM TB_BOARD
         ORDER BY ITEM_NO;
 
@@ -45,24 +45,28 @@
 
     <!-- 비품 리스트 상세 조회   -->
     <select id="detailItem" parameterType="int" resultType="com.spring.board.dto.BoardDTO">
-        SELECT * FROM TB_BOARD WHERE ITEM_NO=#{item_No}
+        SELECT *
+        FROM TB_BOARD
+        WHERE ITEM_NO=#{item_No};
     </select>
 
     <!-- 비품 등록 -->
     <insert id="insertItem" parameterType="com.spring.board.dto.BoardDTO">
-        INSERT INTO TB_BOARD (ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, ITEM_IMAGE)
-        VALUES (#{item_Name}, #{item_Detail}, #{item_Quantity}, #{item_Price}, #{item_Image})
+        INSERT INTO TB_BOARD (ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE)
+        VALUES (#{item_Code}, #{item_Name}, #{item_Detail}, #{item_Quantity}, #{item_Price})
     </insert>
 
     <!-- 비품 정보 수정  -->
     <update id="updateItem" parameterType="com.spring.board.dto.BoardDTO">
         UPDATE TB_BOARD
-        SET ITEM_NAME = #{item_Name},
+        SET
+            ITEM_CODE = #{item_Code},
+            ITEM_NAME = #{item_Name},
             ITEM_DETAIL = #{item_Detail},
             ITEM_QUANTITY = #{item_Quantity},
-            ITEM_PRICE = #{item_Price},
-            ITEM_IMAGE = #{item_Image}
-        WHERE ITEM_NO = #{item_No}
+            ITEM_PRICE = #{item_Price}
+        WHERE
+            ITEM_NO = #{item_No};
     </update>
 
     <!--  비품 정보 삭제  -->
@@ -71,5 +75,21 @@
         WHERE ITEM_NO = #{item_No};
     </delete>
 
+    <!--   비품 상세 조회
+    <select id="itemSearch" parameterType="hashmap" resultType="com.spring.board.dto.BoardDTO">
+        SELECT *
+        FROM TB_BOARD
+        WHERE
+            <choose>
+                <when test="type !=null and type.equals('item_No')">
+                    ITEM_NO LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+
+                <when test="type !=null and type.equals('item_Name')">
+                    ITEM_NAME LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+    </select>
+-->
 
 </mapper>
