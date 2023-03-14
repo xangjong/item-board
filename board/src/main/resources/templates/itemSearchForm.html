@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>비품 상세 검색 페이지</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/item.itemSearch.js}"></script>
+
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+    .text-primary { font-weight: bold; }
+    .table-striped {margin-top:30px; color:#000; background:#3e8f3e;}
+    .success>th, .itemList>td {text-align: center;}
+    .itemList>td>a { color:#fff;}
+    #noList {text-align: center;}
+  </style>
+</head>
+<body>
+<div class="container" align="center">
+  <h2 class="text-primary">비품 검색</h2>
+  <table class="table table-striped">
+
+    <form id="itemSearchFrm">
+      <select id="type" name="type">
+        <option value="itemCode"
+                >비품코드</option>
+        <option value="itemName"
+                >비품명</option>
+      </select>
+      <input type="text" id="keyword" th:name="keyword"
+             name="keyword">
+      <input type="submit" value="검색">
+    </form>
+</table>
+
+  <div id="searchResultBox"></div><br><br>
+  <a href="/" class="btn btn-warning">닫기</a>
+</div>
+</body>
+</html>

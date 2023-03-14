@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    hikari:
+      username: 'root'
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/boarddb?useSSL=true&serverTimezone=UTC
+      password: '1234'
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+  mvc:
+    throw-exception-if-no-handler-found: 'true'
+    web:
+      resources:
+        add-mappings: 'false'
+    servlet:
+      load-on-startup: 1
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: true
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true

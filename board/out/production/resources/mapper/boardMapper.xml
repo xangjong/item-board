@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.board.mapper.BoardMapper">
+
+    <select id="getBoardCount" parameterType="hashmap" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_BOARD;
+    </select>
+
+
+    <!-- 비품 리스트 전체 조회-->
+    <select id="getBoardList" parameterType="hashmap" resultType="com.spring.board.dto.BoardDTO">
+
+        SELECT ITEM_NO, ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
+        FROM TB_BOARD
+        ORDER BY ITEM_NO;
+
+        <!--
+              SELECT *
+              FROM (
+              SELECT A.*, ROW_NUMBER() OVER(ORDER BY ITEM_NO DESC) AS NUM
+              FROM TB_BOARD A
+              )
+              <![CDATA[
+              WHERE NUM >= #{startRow} AND NUM <= #{endRow}
+              ]]>
+              limit 10 offset #{page};
+
+             SELECT
+                  ITEM_NO, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
+              FROM (SELECT
+                      a.*,
+                      row_number() over (order by ITEM_NO DESC) rnum
+                    FROM (SELECT
+                          *
+                          FROM TB_BOARD
+                          ORDER BY ITEM_NO DESC)a)
+                <![CDATA[
+              WHERE rnum >= #{start} AND rnum <= #{end}
+              ]]>
+      -->
+
+    </select>
+
+    <!-- 비품 리스트 상세 조회   -->
+    <select id="detailItem" parameterType="int" resultType="com.spring.board.dto.BoardDTO">
+        SELECT *
+        FROM TB_BOARD
+        WHERE ITEM_NO=#{itemNo};
+    </select>
+
+    <!-- 비품 등록 -->
+    <insert id="insertItem" parameterType="com.spring.board.dto.BoardDTO">
+        INSERT INTO TB_BOARD (ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE)
+        VALUES (#{itemCode}, #{itemName}, #{itemDetail}, #{itemQuantity}, #{itemPrice})
+    </insert>
+
+    <!-- 비품 정보 수정  -->
+    <update id="updateItem" parameterType="com.spring.board.dto.BoardDTO">
+        UPDATE TB_BOARD
+        SET
+            ITEM_CODE = #{itemCode},
+            ITEM_NAME = #{itemName},
+            ITEM_DETAIL = #{itemDetail},
+            ITEM_QUANTITY = #{itemQuantity},
+            ITEM_PRICE = #{itemPrice}
+        WHERE
+            ITEM_NO = #{itemNo};
+    </update>
+
+    <!--  비품 정보 삭제  -->
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM TB_BOARD
+        WHERE ITEM_NO = #{itemNo};
+    </delete>
+
+    <!--   비품 상세 조회
+    <select id="itemSearch" parameterType="hashmap" resultType="com.spring.board.dto.BoardDTO">
+        SELECT *
+        FROM TB_BOARD
+        WHERE
+            <choose>
+                <when test="type !=null and type.equals('itemNo')">
+                    ITEM_NO LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+
+                <when test="type !=null and type.equals('itemName')">
+                    ITEM_NAME LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+    </select>
+-->
+
+</mapper>

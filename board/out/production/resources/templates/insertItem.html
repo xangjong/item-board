@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- 백리향 jstl과 유사한 역할 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+  <title>비품 등록 페이지</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/item/insertItem.js}"></script>
+
+  <style type="text/css">
+    .err { color: red; font-weight: bold; }
+    .form-control { text-align: left; height: 50px;}
+    .text-primary { font-weight: bold; }
+    .success input, .info input { }
+    .success th, .info th { text-align: center; vertical-align: middle;}
+  </style>
+</head>
+<body>
+<div class="container" align="center">
+  <h2 class="text-primary">비품 등록</h2>
+  <form action="insertItem" method="post" id="insertItemFrm">
+    <table class="table table-bordered">
+
+      <tr class="success">
+        <th>비품명</th><td>
+        <input type="text" name="itemName" id="itemName" th:maxlength="20"
+               required="required" autofocus="autofocus" class="form-control"></td></tr>
+
+      <tr class="info">
+        <th>비품 코드</th>
+        <td>
+          <input type="text" class="form-control" name="itemCode" id="itemCode"
+                 th:maxlength="20"
+                 required="required">
+        </td></tr>
+
+      <tr class="info">
+        <th>상세 내용</th>
+        <td>
+          <input class="form-control" name="itemDetail" id="itemDetail"
+                 th:maxlength="255">
+          </td></tr>
+
+      <tr class="info">
+        <th>수량</th>
+        <td>
+          <input class="form-control" name="itemQuantity" id="itemQuantity"
+                 th:maxlength="10" th:value="1"
+                    required="required">
+          </td></tr>
+
+      <tr class="info">
+        <th>가격</th>
+        <td>
+          <input class="form-control" name="itemPrice" id="itemPrice"
+                 th:maxlength="20"
+                    required="required" th:default="1"t>
+            </td></tr>
+
+      <tr class="active"><td colspan="2" align="center">
+        <input type="submit" class="btn btn-primary float-end" value="등록">
+          <a href="/" class="btn btn-success">목록</a>
+      </tr>
+
+    </table>
+  </form>
+</div>
+</body>
+</html>
