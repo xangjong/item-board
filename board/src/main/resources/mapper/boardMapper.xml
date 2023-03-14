@@ -47,32 +47,32 @@
     <select id="detailItem" parameterType="int" resultType="com.spring.board.dto.BoardDTO">
         SELECT *
         FROM TB_BOARD
-        WHERE ITEM_NO=#{item_No};
+        WHERE ITEM_NO=#{itemNo};
     </select>
 
     <!-- 비품 등록 -->
     <insert id="insertItem" parameterType="com.spring.board.dto.BoardDTO">
         INSERT INTO TB_BOARD (ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE)
-        VALUES (#{item_Code}, #{item_Name}, #{item_Detail}, #{item_Quantity}, #{item_Price})
+        VALUES (#{itemCode}, #{itemName}, #{itemDetail}, #{itemQuantity}, #{itemPrice})
     </insert>
 
     <!-- 비품 정보 수정  -->
     <update id="updateItem" parameterType="com.spring.board.dto.BoardDTO">
         UPDATE TB_BOARD
         SET
-            ITEM_CODE = #{item_Code},
-            ITEM_NAME = #{item_Name},
-            ITEM_DETAIL = #{item_Detail},
-            ITEM_QUANTITY = #{item_Quantity},
-            ITEM_PRICE = #{item_Price}
+            ITEM_CODE = #{itemCode},
+            ITEM_NAME = #{itemName},
+            ITEM_DETAIL = #{itemDetail},
+            ITEM_QUANTITY = #{itemQuantity},
+            ITEM_PRICE = #{itemPrice}
         WHERE
-            ITEM_NO = #{item_No};
+            ITEM_NO = #{itemNo};
     </update>
 
     <!--  비품 정보 삭제  -->
     <delete id="deleteItem" parameterType="int">
         DELETE FROM TB_BOARD
-        WHERE ITEM_NO = #{item_No};
+        WHERE ITEM_NO = #{itemNo};
     </delete>
 
     <!--   비품 상세 조회
@@ -81,11 +81,11 @@
         FROM TB_BOARD
         WHERE
             <choose>
-                <when test="type !=null and type.equals('item_No')">
+                <when test="type !=null and type.equals('itemNo')">
                     ITEM_NO LIKE CONCAT('%', #{keyword}, '%')
                 </when>
 
-                <when test="type !=null and type.equals('item_Name')">
+                <when test="type !=null and type.equals('itemName')">
                     ITEM_NAME LIKE CONCAT('%', #{keyword}, '%')
                 </when>
             </choose>

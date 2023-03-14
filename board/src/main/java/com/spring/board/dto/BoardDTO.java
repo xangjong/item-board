@@ -15,18 +15,18 @@ import java.time.LocalDate;
 public class BoardDTO {
 
     @NotBlank(message = "비품 번호는 필수 입력사항 입니다.")
-    private int item_No;
+    private int itemNo;
     @NotBlank(message = "비품 코드는 필수 입력사항 입니다.")
-    private String item_Code;
+    private String itemCode;
     @NotBlank(message = "비품 명은 필수 입력사항 입니다.")
-    private String item_Name;
-    private String item_Detail;
+    private String itemName;
+    private String itemDetail;
     @NotBlank(message = "수량은 필수 입력사항 입니다.")
-    private int item_Quantity;
+    private int itemQuantity;
     @NotBlank(message = "가격은 필수 입력사항 입니다.")
-    private int item_Price;
+    private int itemPrice;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate reg_DateTime;
+    private LocalDate regDateTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate mod_DateTime;
+    private LocalDate modDateTime;
 }

@@ -20,62 +20,62 @@
     <tr>
       <th class="success">비품 번호</th>
       <td>
-        <input type="text" name="item_No" th:value="${board.item_No}"
+        <input type="text" name="itemNo" th:value="${board.itemNo}"
                   th:readonly="readonly"
-                 id="item_No"
+                 id="itemNo"
                  required="required" class="form-control" ></td>
     </tr>
 
     <tr>
       <th class="success">비품코드</th>
-      <td><input type="text" name="item_Code" th:value="${board.item_Code}"
-                 id="item_Code"
+      <td><input type="text" name="itemCode" th:value="${board.itemCode}"
+                 id="itemCode"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
 
     <tr>
     <th class="success">비품명</th>
-      <td><input type="text" name="item_Name" th:value="${board.item_Name}"
-                 id="item_Name"
+      <td><input type="text" name="itemName" th:value="${board.itemName}"
+                 id="itemName"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">상세 설명</th>
-      <td><input type="text" name="item_Detail" th:value="${board.item_Detail}"
-                 id="item_Detail" autofocus="autofocus" class="form-control"></td>
+      <td><input type="text" name="itemDetail" th:value="${board.itemDetail}"
+                 id="itemDetail" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">수량</th>
-      <td><input type="text" name="item_Quantity" th:value="${board.item_Quantity}"
-                 id="item_Quantity"
+      <td><input type="text" name="itemQuantity" th:value="${board.itemQuantity}"
+                 id="itemQuantity"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">가격</th>
-      <td><input type="text" name="item_Price" th:value="${board.item_Price}"
-                 id="item_Price"
+      <td><input type="text" name="itemPrice" th:value="${board.itemPrice}"
+                 id="itemPrice"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">등록일</th>
-      <td><input type="text" name="reg_DateTime"
+      <td><input type="text" name="regDateTime"
                  th:readonly="readonly"
-                 th:value="${#temporals.format(board.reg_DateTime, 'yyyy-MM-dd')}"
-                 id="reg_DateTime" required="required" autofocus="autofocus" class="form-control"></td>
+                 th:value="${#temporals.format(board.regDateTime, 'yyyy-MM-dd')}"
+                 id="regDateTime" required="required" autofocus="autofocus" class="form-control"></td>
       </td>
     </tr>
 
     <tr>
       <th class="success">수정일</th>
-      <td><input type="text" name="reg_DateTime"
+      <td><input type="text" name="modDateTime"
                  th:readonly="readonly"
-                 th:value="${#temporals.format(board.mod_DateTime, 'yyyy-MM-dd')}"
-                 id="mod_DateTime" required="required" autofocus="autofocus" class="form-control"></td>
+                 th:value="${#temporals.format(board.modDateTime, 'yyyy-MM-dd')}"
+                 id="modDateTime" required="required" autofocus="autofocus" class="form-control"></td>
       </td>
     </tr>
 
@@ -83,7 +83,7 @@
   <a href="/" class="btn btn-success">목록</a>
     <input type="submit" class="btn btn-primary float-end" value="수정">
     <button onclick="location.href='/detailItem.html'" class="btn btn-warning"
-            th:onclick="|location.href='@{/detailItem/{item_No}(item_No=${board.item_No})}'|"
+            th:onclick="|location.href='@{/detailItem/{itemNo}(itemNo=${board.itemNo})}'|"
             type="button">취소</button>
   </form>
 </div>

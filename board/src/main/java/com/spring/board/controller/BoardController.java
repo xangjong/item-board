@@ -28,7 +28,7 @@ public class BoardController {
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
     // 비품 리스트 뷰
-    @RequestMapping("boardList")
+    @RequestMapping("/")
     public ModelAndView listAll(@RequestParam(value="pageNum", defaultValue ="1")
                                 int currentPage) {
         //총 레코드 수
@@ -75,17 +75,17 @@ public class BoardController {
     }
 
     // 비품 상세 정보 조회
-    @GetMapping("detailItem/{item_No}")
-    public String detailItem(@PathVariable("item_No") int item_No, Model model) {
-        BoardDTO board = boardService.detailItem(item_No);
+    @GetMapping("detailItem/{itemNo}")
+    public String detailItem(@PathVariable("itemNo") int itemNo, Model model) {
+        BoardDTO board = boardService.detailItem(itemNo);
         model.addAttribute("board", board);
         return "detailItem";
     }
 
     // 비품 수정 폼
     @GetMapping("updateItem")
-    public String updateItemForm(int item_No, Model model) {
-        BoardDTO board = boardService.detailItem(item_No);
+    public String updateItemForm(int itemNo, Model model) {
+        BoardDTO board = boardService.detailItem(itemNo);
         model.addAttribute("board", board);
         return "updateItem";
     }
@@ -98,9 +98,9 @@ public class BoardController {
     }
 
     // 비품 삭제
-    @GetMapping("deleteItem/{item_No}")
-    public String deleteItem(@PathVariable("item_No") int item_No) {
-        boardService.deleteItem(item_No);
+    @GetMapping("deleteItem/{itemNo}")
+    public String deleteItem(@PathVariable("itemNo") int itemNo) {
+        boardService.deleteItem(itemNo);
         return "redirect:/";
     }
 

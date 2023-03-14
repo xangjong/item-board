@@ -38,8 +38,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardDTO detailItem(int item_No) {
-        return boardMapper.detailItem(item_No);
+    public BoardDTO detailItem(int itemNo) {
+        return boardMapper.detailItem(itemNo);
     }
 
     @Override
@@ -48,13 +48,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void deleteItem(int item_No) {
-        boardMapper.deleteItem(item_No);
+    public void deleteItem(int itemNo) {
+        boardMapper.deleteItem(itemNo);
     }
 
     @Override
-    public int ItemNoCheck(int item_No) {
-        return boardMapper.ItemNoCheck(item_No);
+    public int ItemNoCheck(int itemNo) {
+        return boardMapper.ItemNoCheck(itemNo);
     }
 
     @Override

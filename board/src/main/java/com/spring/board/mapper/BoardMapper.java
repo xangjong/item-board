@@ -15,13 +15,13 @@ public interface BoardMapper {
 
     public void insertItem(BoardDTO board);
 
-    public BoardDTO detailItem(int item_No);
+    public BoardDTO detailItem(int itemNo);
 
     public void updateItem(BoardDTO board);
 
-    public void deleteItem(int item_No);
+    public void deleteItem(int itemNo);
 
-    public int ItemNoCheck(int item_No);
+    public int ItemNoCheck(int itemNo);
 
     public ArrayList<BoardDTO> itemSearch(HashMap<String, Object> map);
 
