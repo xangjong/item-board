@@ -1,10 +1,11 @@
 package com.spring.board.service;
 
 import com.spring.board.dto.BoardDTO;
-import org.springframework.transaction.annotation.Transactional;
+import com.spring.board.dto.PageVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public interface BoardService {
@@ -24,4 +25,13 @@ public interface BoardService {
     public int ItemNoCheck(int itemNo);
 
     public ArrayList<BoardDTO> itemSearch(HashMap<String, Object> map);
+
+    // 페이징을 위한 전체 데이터 개수 파악
+    public int getCount();
+
+
+    // 페이징을 위한 getListPage 메소드 추가
+    public List<BoardDTO> getListPage(final PageVo pageVo);
+
+
 }

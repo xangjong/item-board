@@ -7,18 +7,16 @@ $(document).ready(function(){
 
     $('#itemSearchFrm').on('submit', function(){
 
-        var formData = $(this).serialize();
+        let formData = $(this).serialize();
 
         $.ajax({
             type:"post",
-            url:"itemSearch",
+            url:"/itemSearch",
             data:formData,
-            success: function(result){ // 컨트롤러에서 반환한 itemList result가 받음
+            success: function(data){ // 컨트롤러에서 반환한 itemList result가 받음
                 // 반환된 결과를 <div>으로 삽입
                 // alert(result);
-                $('#searchResultBox').html(result);
             },
-
             error: function(){
                 // 오류있을 경우 수행되는 함수
                 alert("전송 실패");

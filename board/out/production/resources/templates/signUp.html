@@ -6,9 +6,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<script type="text/javascript" th:inline="javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:inline="javascript" th:src="@{/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:inline="javascript" th:src="@{/js/member/memberIdCheck.js}"></script>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/member/signUp.js}"></script>
 
 
 <style>
@@ -30,7 +30,7 @@
   <title>회원가입 페이지</title>
 </head>
 <body>
-<form method="" action="">
+<form method="post" action="/signUp" id="signFrm">
   <div class="container">
     <h1 class="text-primary">회원가입</h1>
     <div class="form-group">
@@ -69,7 +69,9 @@
     </div>
 
     <div class="btnBox">
+      <a href="/login" class="btn btn-success">로그인</a>
       <button type="button" id="submitBtn" class="btn btn-primary" >가입 완료</button>
+      <a href="/" class="btn btn-success">메인 화면</a>
     </div>
 
   </div>

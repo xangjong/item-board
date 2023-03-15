@@ -3,6 +3,7 @@ package com.spring.board.service;
 import com.spring.board.controller.BoardController;
 import com.spring.board.dto.BoardDTO;
 import com.spring.board.mapper.BoardMapper;
+import com.spring.board.dto.PageVo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -61,4 +63,15 @@ public class BoardServiceImpl implements BoardService{
     public ArrayList<BoardDTO> itemSearch(HashMap<String, Object> map) {
         return boardMapper.itemSearch(map);
     }
+
+    @Override
+    public int getCount() {
+        return boardMapper.getCount();
+    }
+
+    @Override
+    public List<BoardDTO> getListPage(PageVo pageVo) {
+        return boardMapper.getListPage(pageVo);
+    }
+
 }

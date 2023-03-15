@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @EnableWebSecurity        //spring security 를 적용한다는 Annotation
@@ -38,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/")
+                    .invalidateHttpSession(true)
                 .and()
                     .exceptionHandling()
                     .accessDeniedPage("/accessDenied_page") // 권한이 없는 대상이 접속을시도했을 때

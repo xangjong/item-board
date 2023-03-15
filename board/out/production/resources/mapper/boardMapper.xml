@@ -15,32 +15,6 @@
         SELECT ITEM_NO, ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
         FROM TB_BOARD
         ORDER BY ITEM_NO;
-
-        <!--
-              SELECT *
-              FROM (
-              SELECT A.*, ROW_NUMBER() OVER(ORDER BY ITEM_NO DESC) AS NUM
-              FROM TB_BOARD A
-              )
-              <![CDATA[
-              WHERE NUM >= #{startRow} AND NUM <= #{endRow}
-              ]]>
-              limit 10 offset #{page};
-
-             SELECT
-                  ITEM_NO, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
-              FROM (SELECT
-                      a.*,
-                      row_number() over (order by ITEM_NO DESC) rnum
-                    FROM (SELECT
-                          *
-                          FROM TB_BOARD
-                          ORDER BY ITEM_NO DESC)a)
-                <![CDATA[
-              WHERE rnum >= #{start} AND rnum <= #{end}
-              ]]>
-      -->
-
     </select>
 
     <!-- 비품 리스트 상세 조회   -->
@@ -75,14 +49,14 @@
         WHERE ITEM_NO = #{itemNo};
     </delete>
 
-    <!--   비품 상세 조회
+    <!--  비품 상세 조회-->
     <select id="itemSearch" parameterType="hashmap" resultType="com.spring.board.dto.BoardDTO">
         SELECT *
         FROM TB_BOARD
         WHERE
             <choose>
-                <when test="type !=null and type.equals('itemNo')">
-                    ITEM_NO LIKE CONCAT('%', #{keyword}, '%')
+                <when test="type !=null and type.equals('itemCode')">
+                    ITEM_CODE LIKE CONCAT('%', #{keyword}, '%')
                 </when>
 
                 <when test="type !=null and type.equals('itemName')">
@@ -90,6 +64,21 @@
                 </when>
             </choose>
     </select>
--->
+
+
+    <!-- 게시물 총 개수 구하기 -->
+    <select id="getCount" resultType="int">
+        SELECT count(*)
+        FROM TB_BOARD
+    </select>
+
+    <select id="getListPage" parameterType="com.spring.board.dto.PageVo" resultType="com.spring.board.dto.BoardDTO">
+        SELECT *
+        FROM TB_BOARD
+        ORDER BY ITEM_NO DESC
+        LIMIT #{rowCount}
+            OFFSET #{offset}
+    </select>
+
 
 </mapper>

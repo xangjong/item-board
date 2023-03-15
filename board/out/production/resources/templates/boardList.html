@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
   <title>비품 리스트 조회 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/item/itemSearch.js}"></script>
 
   <style type="text/css">
     .err { color: red; font-weight: bold; }
     .text-primary { font-weight: bold; }
     .table-striped {margin-top:30px; color:#000;}
+    .table>tbody>tr.success {}
     .success>th, .itemList>td {text-align: center; background: #245580;}
     .itemList>td>a { color:#fff;}
     #noList {text-align: center; color:#000; font-weight: bold; }
@@ -27,11 +32,28 @@
  <div class="headerBox">
    <div class="titleBox">
      <h2 class="text-primary">비품 리스트</h2>
+     <div class="navBox">
+       <form id="itemSearchFrm" action="/itemSearch">
+         <select id="type" name="type">
+           <option value="itemCode">비품코드</option>
+           <option value="itemName">비품명</option>
+         </select>
+         <input type="text" id="keyword" th:name="keyword"
+                name="keyword">
+         <input type="submit" value="검색" class="">
+       </form>
+     </div>
    </div>
-   <div class="navBox">
+   <!--<div class="navBox"  th:if="${loginUser == null }">
      <a href="/login">로그인</a>
      <a href="/signUp">회원 가입</a>
    </div>
+
+   <div class="navBox" th:unless="${loginUser != null}">
+     <a th:value="${memberId}">님</a>
+     <a href="/">로그 아웃</a>
+   </div>-->
+
  </div>
   <table class="table table-striped">
   <tr class="success">
@@ -43,6 +65,7 @@
     <th>가격</th>
     <th>등록일</th>
   </tr>
+
   <tr th:each="itemList:${list}" th:if="${!#lists.isEmpty(list)}" class="itemList btn-success">
     <td th:text="${itemList.itemNo}"></td>
     <td th:text="${itemList.itemCode}"></td>
@@ -64,11 +87,37 @@
     </tr>
 
 </table>
-  <div class="align-center" th:text="${page}"></div>
+
+  <div id="pagination">
+    <!-- 맨 처음 페이지로 이동하는 버튼 -->
+    <span th:if="${pageVo.startPage > 1}">
+        <a th:href="@{'/boardList?page=1'}" th:text="'처음&emsp;'"></a>
+    </span>
+
+    <!-- 이전 블록으로 이동하는 버튼 -->
+    <span th:if="${pageVo.isPrev == true}">
+    	<a th:href="@{'/boardList?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a>
+    </span>
+
+    <!-- 시퀀스 보여주는 값을 변경. -->
+    <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
+        <a class="div2" th:href="@{'/boardList?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+    </span>
+
+    <!-- 다음 블록으로 이동하는 버튼 -->
+    <span th:if="${pageVo.isNext == true}">
+	<a th:href="@{'/boardList?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a>
+    </span>
+
+    <!-- 맨 뒷 페이지로 이동하는 버튼 -->
+    <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
+	<a th:href="@{'/boardList?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a>
+    </span>
+  </div>
 
   <button class="btn btn-success"
-          th:onclick="|location.href='@{/itemSearchForm}'|"
-          type="button">조회</button>
+          th:onclick="|location.href='@{/}'|"
+          type="button">메인 화면</button>
 
   <button class="btn btn-primary float-end"
         onclick="location.href='insertItem.html'"

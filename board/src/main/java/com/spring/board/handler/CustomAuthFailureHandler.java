@@ -1,4 +1,4 @@
-package com.spring.board.service;
+package com.spring.board.handler;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
