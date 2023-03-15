@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>비품 리스트 조회 페이지</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+  <style type="text/css">
+    .text-primary { font-weight: bold; }
+    .itemList>td>a { color:#fff;}
+    .container {margin:0 auto; text-align:center; width:1080px;}
+    .headerBox { margin-bottom: 30px;}
+    .navBox { margin-top: 20px; padding:5px 10px; }
+    .navBox>a { border:none; text-decoration: none;}
+    .navBox>a:hover { font-weight: bold; font-size:14px; color:#fff; background: #245580;}
+  </style>
+</head>
+<body>
+<div class="container" align="center">
+ <div class="headerBox">
+   <div class="titleBox">
+     <h2 class="text-primary">비품 리스트</h2>
+   </div>
+   <div class="navBox">
+
+       <sec:authorize access="isAnonymous()">
+           <a href="/login" class="btn btn-success">로그인</a>
+           <a href="/signUp" class="btn btn-primary" >회원 가입</a>
+       </sec:authorize>
+
+
+       <sec:authorize access="isAuthenticated()">
+           <a href="/" class="btn btn-success">로그 아웃</a>
+       </sec:authorize>
+
+
+
+       <button class="btn btn-success"
+               th:onclick="|location.href='@{/boardList}'|"
+               type="button">조회</button>
+
+       <button class="btn btn-primary float-end"
+               onclick="location.href='insertItem.html'"
+               th:onclick="|location.href='@{/insertItem}'|"
+               type="button">등록</button>
+   </div>
+ </div>
+</div>
+</body>
+</html>
