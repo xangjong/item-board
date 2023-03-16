@@ -52,9 +52,10 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public ArrayList<BoardDTO> itemSearch(HashMap<String, Object> map) {
+    public List<BoardDTO> itemSearch(HashMap<String, Object> map) {
         return boardMapper.itemSearch(map);
     }
+
 
     @Override
     public int getCount() {

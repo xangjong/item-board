@@ -25,6 +25,12 @@ public class PageVo {
 
     int offset;            // 얼만큼 끊어서 가져올 것인가.
 
+
+    // 검색 타입
+    private String type;
+
+    // 검색 키워드
+    private String keyword;
     public PageVo(int totalCount, int page) {
 
         // 총 페이지 개수 구하기

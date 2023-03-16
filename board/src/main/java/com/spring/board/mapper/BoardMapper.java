@@ -22,7 +22,7 @@ public interface BoardMapper {
 
     public int ItemNoCheck(int itemNo);
 
-    public ArrayList<BoardDTO> itemSearch(HashMap<String, Object> map);
+    public List<BoardDTO> itemSearch(HashMap<String, Object> map);
 
     // 페이징을 위한 전체 데이터 개수 파악
     public int getCount();

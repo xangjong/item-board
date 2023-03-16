@@ -1,8 +1,6 @@
 package com.spring.board.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -10,9 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class BoardDTO{
 
     @NotBlank(message = "비품 번호는 필수 입력사항 입니다.")
@@ -30,5 +26,9 @@ public class BoardDTO{
     private Date regDateTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date modDateTime;
+
+    private String type; // 검색 타입
+    private String keyword; // 검색 내용
+
 
 }

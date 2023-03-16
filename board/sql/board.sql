@@ -6,11 +6,11 @@ DROP TABLE IF EXISTS `TB_BOARD` CASCADE;
 
 CREATE TABLE `TB_BOARD` (
                             `ITEM_NO`	INT	NOT NULL AUTO_INCREMENT,
-                            `ITEM_CODE` VARCHAR(100) NULL,
-                            `ITEM_NAME`	VARCHAR(100) NULL,
+                            `ITEM_CODE` VARCHAR(100) NOT NULL,
+                            `ITEM_NAME`	VARCHAR(100) NOT NULL,
                             `ITEM_DETAIL`	VARCHAR(200) NULL,
-                            `ITEM_QUANTITY`	INT	DEFAULT 1 ,
-                            `ITEM_PRICE`	INT	DEFAULT 0,
+                            `ITEM_QUANTITY`	INT	DEFAULT 1 NOT NULL,
+                            `ITEM_PRICE`	INT	DEFAULT 0 NOT NULL,
                             `REG_DATETIME`	DATETIME DEFAULT CURRENT_TIMESTAMP,
                             `MOD_DATETIME`	DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                             PRIMARY KEY (`ITEM_NO`)

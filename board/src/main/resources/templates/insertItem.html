@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- 백리향 jstl과 유사한 역할 -->
-<html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security"><head><meta charset="UTF-8">
   <title>비품 등록 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
@@ -54,13 +54,13 @@
         <th>가격</th>
         <td>
           <input class="form-control" name="itemPrice" id="itemPrice"
-                 th:maxlength="20"
+                 th:maxlength="10"
                     required="required" th:default="1"t>
             </td></tr>
 
       <tr class="active"><td colspan="2" align="center">
-        <input type="submit" class="btn btn-primary float-end" value="등록">
-          <a href="/" class="btn btn-success">목록</a>
+        <input type="submit" class="btn btn-primary float-end" value="확인">
+          <a href="/boardList" class="btn btn-success">목록</a>
       </tr>
 
     </table>

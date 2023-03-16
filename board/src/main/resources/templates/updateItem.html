@@ -22,14 +22,14 @@
       <td>
         <input type="text" name="itemNo" th:value="${board.itemNo}"
                   th:readonly="readonly"
-                 id="itemNo"
+                 id="itemNo" maxlength="10"
                  required="required" class="form-control" ></td>
     </tr>
 
     <tr>
       <th class="success">비품코드</th>
       <td><input type="text" name="itemCode" th:value="${board.itemCode}"
-                 id="itemCode"
+                 id="itemCode" maxlength="10"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
@@ -37,34 +37,35 @@
     <tr>
     <th class="success">비품명</th>
       <td><input type="text" name="itemName" th:value="${board.itemName}"
-                 id="itemName"
+                 id="itemName" maxlength="10"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">상세 설명</th>
       <td><input type="text" name="itemDetail" th:value="${board.itemDetail}"
+                 maxlength="255"
                  id="itemDetail" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">수량</th>
       <td><input type="text" name="itemQuantity" th:value="${board.itemQuantity}"
-                 id="itemQuantity"
+                 id="itemQuantity" maxlength="10"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">가격</th>
       <td><input type="text" name="itemPrice" th:value="|${#numbers.formatInteger(board.itemPrice, 0, 'COMMA')}|"
-                 id="itemPrice"
+                 id="itemPrice" maxlength="10"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
 
     <tr>
       <th class="success">등록일</th>
       <td><input type="text" name="regDateTime"
-                 th:readonly="readonly"
+                 th:readonly="readonly" maxlength="12"
                  th:value="${#dates.format(board.regDateTime, 'yyyy-MM-dd')}"
                  id="regDateTime" required="required" autofocus="autofocus" class="form-control"></td>
 
@@ -74,7 +75,7 @@
     <tr>
       <th class="success">수정일</th>
       <td><input type="text" name="modDateTime"
-                 th:readonly="readonly"
+                 th:readonly="readonly" maxlength="12"
                  th:value="${#dates.format(board.modDateTime, 'yyyy-MM-dd')}"
                  id="modDateTime" required="required" autofocus="autofocus" class="form-control"></td>
       </td>

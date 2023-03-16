@@ -30,12 +30,12 @@ public class BoardController {
 
     // 비품 리스트 뷰
     @RequestMapping("/boardList")
-    public String getBoardList(@RequestParam HashMap<String, Object> map,
-                               @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+    public String getBoardList(
+                               @RequestParam(value = "page", defaultValue = "1") int page,
+                               @RequestParam(value = "type", defaultValue = "itemCode") String type,
+                               @RequestParam(value = "keyword", required = false) String keyword,
 
-
-//        ArrayList<BoardDTO> boardList = boardService.getBoardList(map);
-//        model.addAttribute("boardList", boardList);
+                               Model model) throws Exception {
 
         PageVo pageVo = new PageVo(boardService.getCount(), page); // 모든 게시글 개수 구하기.
         List<BoardDTO> list = boardService.getListPage(pageVo);
@@ -43,6 +43,8 @@ public class BoardController {
         model.addAttribute("list", list);
         model.addAttribute("page", page);
         model.addAttribute("pageVo", pageVo);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("type", type);
 
         return "boardList";
     }
@@ -93,17 +95,11 @@ public class BoardController {
 
     // 비품 상세 조회
     @RequestMapping("/itemSearch")
-    public String itemSearch(@RequestParam HashMap<String, Object> map,
-                             Model model) {
-        logger.debug("map : " + map.toString());
+    public String itemSearch(@RequestParam HashMap<String, Object>
+                                         map, Model model) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        ArrayList<BoardDTO> list = boardService.itemSearch(map);
-
+        List<BoardDTO> list = boardService.itemSearch(map);
         model.addAttribute("list", list);
-
-
-        logger.debug("model : " + model);
 
         return "boardList";
     }

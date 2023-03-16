@@ -8,11 +8,11 @@
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <script type="text/javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-  <script th:inline="javascript" type="text/javascript" th:src="@{/js/item/itemSearch.js}"></script>
+  <script type="text/javascript" th:src="@{/js/item/itemSearch.js}"></script>
 
   <style type="text/css">
     .text-primary { font-weight: bold; }
-    .table-striped {margin-top:30px; color:#000;}
+    .table-striped {margin-top:30px; color:#000; width:1080px;}
     .success>th, .itemList>td {text-align: center; background: #2b669a;}
     .success>th:hover {text-align: center; background: #fff; color:#000;}
     .itemList>td>a { color:#fff;}
@@ -23,7 +23,6 @@
     .container {}
     .headerBox { display: flex; justify-content: space-between;}
     .titleBox { display: flex;  align-items: center; }
-    .navBox { margin-top: 30px;}
     .navBox>a { margin-right:10px; text-decoration: none; color:#000; padding:5px 10px; font-size:14px;}
     .navBox>a:hover { font-weight: bold; font-size:14px; color:#2b669a; background: #fff;}
     #pagination { margin:40px 0;}
@@ -38,29 +37,20 @@
  <div class="headerBox">
    <div class="titleBox">
      <h2 class="text-primary">비품 리스트</h2>
-     <div class="navBox">
-       <form id="itemSearchFrm" action="itemSearch">
-         <select id="type" name="type">
-           <option value="itemCode">비품코드</option>
-           <option value="itemName">비품명</option>
-         </select>
-         <input type="text" id="keyword" th:name="keyword"
-                name="keyword">
-         <input type="submit" value="검색">
-       </form>
-     </div>
    </div>
-   <!--<div class="navBox"  th:if="${loginUser == null }">
-     <a href="/login">로그인</a>
-     <a href="/signUp">회원 가입</a>
-   </div>
-
-   <div class="navBox" th:unless="${loginUser != null}">
-     <a th:value="${memberId}">님</a>
-     <a href="/">로그 아웃</a>
-   </div>-->
-
  </div>
+         <form id="searchForm" onsubmit="return false;" autocomplete="off">
+           <div class="sch_group fl">
+             <select id="type" name="type" title="검색 유형 선택">
+               <option value="itemCode">비품코드</option>
+               <option value="itemName">비품명</option>
+             </select>
+             <input type="text" id="keyword" name="keyword" placeholder="키워드를 입력해 주세요." title="키워드 입력" />
+             <button type="button" class="btnSearch" onclick="movePage(1);"><span class="skip_info">검색</span></button>
+           </div>
+         </form>
+
+
   <table class="table table-striped">
   <tr class="success">
     <th>비품 번호</th>
@@ -83,7 +73,7 @@
       ></a>
     </td>
     <td th:text="${itemList.itemDetail}"></td>
-    <td th:text="${itemList.itemQuantity}"></td>
+    <td th:text="|${#numbers.formatInteger(itemList.itemQuantity, 0, 'COMMA')}|"></td>
     <td th:text="|${#numbers.formatInteger(itemList.itemPrice, 0, 'COMMA')}|"></td>
     <td th:text="${#dates.format(itemList.regDateTime, 'yyyy-MM-dd')}"></td>
 
@@ -121,15 +111,19 @@
 	<a th:href="@{'/boardList?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a>
     </span>
   </div>
-
+  <div sec:authorize="isAuthenticated()"></div>
+  <div sec:authorize="hasRole('ROLE_ADMIN')"></div>
+  <div sec:authorize="hasRole('ROLE_USER')"></div>
   <button class="btn btn-success"
           th:onclick="|location.href='@{/}'|"
           type="button">메인 화면</button>
-
-  <button class="btn btn-primary float-end"
+  <a href="/login" class="btn btn-primary" sec:authorize="isAnonymous()">로그인</a>
+  <a href="/signUp" class="btn btn-success" sec:authorize="isAnonymous()" >회원 가입</a>
+  <a href="/logout" class="btn btn-primary" sec:authorize="isAuthenticated()">로그 아웃</a>
+  <button class="btn btn-success float-end"
         onclick="location.href='insertItem.html'"
         th:onclick="|location.href='@{/insertItem}'|"
-        type="button">등록</button>
+        type="button" sec:authorize="isAuthenticated()" >등록</button>
 </div>
 </body>
 </html>

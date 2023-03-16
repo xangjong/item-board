@@ -17,17 +17,21 @@ import java.net.URLEncoder;
 @Component
 public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
+
     /*
      * HttpServletRequest : request 정보
      * HttpServletResponse : Response에 대해 설정할 수 있는 변수
      * AuthenticationException : 로그인 실패 시 예외에 대한 정보
      */
 
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
 
         String errorMessage = null;
+
+
 
         if (exception instanceof BadCredentialsException) {
             errorMessage = "아이디 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.";

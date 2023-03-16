@@ -2,7 +2,7 @@
  * itemSearch.js
  */
 
-$(document).ready(function(){
+$/*(document).ready(function(){
 
     $('#itemSearchFrm').on('submit', function(){
 
@@ -11,10 +11,10 @@ $(document).ready(function(){
         console.log("formData : " + formData);
 
         $.ajax({
-            type:"post",
+            type:"POST",
             url:"/itemSearch",
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            dataType:'JSON',
+            dataType:'html',
             data:formData,
             success: function(data){ // 컨트롤러에서 반환한 itemList result가 받음
                 // 반환된 결과를 <div>으로 삽입
@@ -27,4 +27,23 @@ $(document).ready(function(){
             }
         }); // ajax 끝
     }); // submit 끝
-});  // ready 끝
+});  // ready 끝*/
+
+
+
+$(document).on('click', '#btnSearch', function(e){
+
+    e.preventDefault();
+
+    let url = "${pageContext.request.contextPath}/boardList";
+
+    url = url + "?type=" + $('#type').val();
+
+    url = url + "&keyword=" + $('#keyword').val();
+
+    location.href = url;
+
+    console.log(url);
+
+});
+
