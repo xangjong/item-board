@@ -21,18 +21,10 @@ public class BoardServiceImpl implements BoardService{
 
     private final BoardMapper boardMapper;
 
-    private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-
     @Override
     public ArrayList<BoardDTO> getBoardList(HashMap<String, Object> map) {
         return boardMapper.getBoardList(map);
     }
-
-    @Override
-    public int getBoardCount() {
-        return boardMapper.getBoardCount();
-    }
-
 
     @Override
     public void insertItem(BoardDTO board) {

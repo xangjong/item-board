@@ -8,11 +8,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
 @ToString
-public class BoardDTO {
+public class BoardDTO{
 
     @NotBlank(message = "비품 번호는 필수 입력사항 입니다.")
     private int itemNo;
@@ -26,7 +27,8 @@ public class BoardDTO {
     @NotBlank(message = "가격은 필수 입력사항 입니다.")
     private int itemPrice;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate regDateTime;
+    private Date regDateTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate modDateTime;
+    private Date modDateTime;
+
 }

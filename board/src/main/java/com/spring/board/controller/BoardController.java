@@ -1,5 +1,7 @@
 package com.spring.board.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.board.dto.BoardDTO;
 import com.spring.board.dto.PageVo;
 import com.spring.board.service.BoardService;
@@ -31,18 +33,16 @@ public class BoardController {
     public String getBoardList(@RequestParam HashMap<String, Object> map,
                                @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
+
+//        ArrayList<BoardDTO> boardList = boardService.getBoardList(map);
+//        model.addAttribute("boardList", boardList);
+
         PageVo pageVo = new PageVo(boardService.getCount(), page); // 모든 게시글 개수 구하기.
-
-        ArrayList<BoardDTO> boardList = boardService.getBoardList(map);
-        model.addAttribute("list", boardList);
-
         List<BoardDTO> list = boardService.getListPage(pageVo);
 
-        model.addAttribute("boardList", list);
+        model.addAttribute("list", list);
         model.addAttribute("page", page);
         model.addAttribute("pageVo", pageVo);
-
-
 
         return "boardList";
     }
@@ -94,13 +94,16 @@ public class BoardController {
     // 비품 상세 조회
     @RequestMapping("/itemSearch")
     public String itemSearch(@RequestParam HashMap<String, Object> map,
-                             Model model){
+                             Model model) {
         logger.debug("map : " + map.toString());
 
+        ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<BoardDTO> list = boardService.itemSearch(map);
+
         model.addAttribute("list", list);
 
-        logger.debug("list" + list.toString());
+
+        logger.debug("model : " + model);
 
         return "boardList";
     }

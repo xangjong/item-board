@@ -12,8 +12,6 @@ public interface BoardService {
 
     public ArrayList<BoardDTO> getBoardList(HashMap<String, Object> map);
 
-    public int getBoardCount();
-
     public void insertItem(BoardDTO board);
 
     public BoardDTO detailItem(int itemNo);
@@ -31,7 +29,7 @@ public interface BoardService {
 
 
     // 페이징을 위한 getListPage 메소드 추가
-    public List<BoardDTO> getListPage(final PageVo pageVo);
+    public List<BoardDTO> getListPage(PageVo pageVo);
 
 
 }

@@ -56,7 +56,7 @@
 
     <tr>
       <th class="success">가격</th>
-      <td><input type="text" name="itemPrice" th:value="${board.itemPrice}"
+      <td><input type="text" name="itemPrice" th:value="|${#numbers.formatInteger(board.itemPrice, 0, 'COMMA')}|"
                  id="itemPrice"
                  required="required" autofocus="autofocus" class="form-control"></td>
     </tr>
@@ -65,8 +65,9 @@
       <th class="success">등록일</th>
       <td><input type="text" name="regDateTime"
                  th:readonly="readonly"
-                 th:value="${#temporals.format(board.regDateTime, 'yyyy-MM-dd')}"
+                 th:value="${#dates.format(board.regDateTime, 'yyyy-MM-dd')}"
                  id="regDateTime" required="required" autofocus="autofocus" class="form-control"></td>
+
       </td>
     </tr>
 
@@ -74,7 +75,7 @@
       <th class="success">수정일</th>
       <td><input type="text" name="modDateTime"
                  th:readonly="readonly"
-                 th:value="${#temporals.format(board.modDateTime, 'yyyy-MM-dd')}"
+                 th:value="${#dates.format(board.modDateTime, 'yyyy-MM-dd')}"
                  id="modDateTime" required="required" autofocus="autofocus" class="form-control"></td>
       </td>
     </tr>
