@@ -22,8 +22,6 @@ import java.util.*;
 public class BoardController {
 
     private final BoardService boardService;
-    private final MemberService memberService;
-
     // logger
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -100,10 +98,6 @@ public class BoardController {
 
         List<BoardDTO> list = boardService.itemSearch(map);
         model.addAttribute("list", list);
-
         return "boardList";
     }
-
-
-
 }
