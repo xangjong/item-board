@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>비품 리스트 조회 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
   <script type="text/javascript" th:src="@{/js/jquery-3.6.4.min.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
   <script type="text/javascript" th:src="@{/js/item/itemSearch.js}"></script>
@@ -32,6 +33,7 @@
     #pagination>span>a:hover { text-decoration: none; color:#2b669a; background: #fff;}
   </style>
 </head>
+
 <body>
 <div class="container" align="center">
  <div class="headerBox">
@@ -39,6 +41,7 @@
      <h2 class="text-primary">비품 리스트</h2>
    </div>
  </div>
+
          <form id="searchForm" onsubmit="return false;" autocomplete="off">
            <div class="sch_group fl">
              <select id="type" name="type" title="검색 유형 선택">
@@ -111,9 +114,8 @@
 	<a th:href="@{'/boardList?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a>
     </span>
   </div>
-  <div sec:authorize="isAuthenticated()"></div>
-  <div sec:authorize="hasRole('ROLE_ADMIN')"></div>
-  <div sec:authorize="hasRole('ROLE_USER')"></div>
+
+
   <button class="btn btn-success"
           th:onclick="|location.href='@{/}'|"
           type="button">메인 화면</button>
