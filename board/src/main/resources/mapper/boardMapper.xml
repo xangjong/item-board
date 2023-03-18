@@ -70,11 +70,25 @@
     <select id="getListPage" parameterType="com.spring.board.dto.PageVo" resultType="com.spring.board.dto.BoardDTO">
         SELECT ITEM_NO, ITEM_CODE, ITEM_NAME, ITEM_DETAIL, ITEM_QUANTITY, ITEM_PRICE, REG_DATETIME
         FROM TB_BOARD
+        <include refid="search"></include>
         ORDER BY ITEM_NO DESC
         LIMIT #{rowCount}
             OFFSET #{offset}
-
     </select>
 
+    <!-- 키워드 검색 -->
+    <sql id="search">
+        <where>
+            <choose>
+                <when test="type !=null and type.equals('itemCode')">
+                    ITEM_CODE LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+
+                <when test="type !=null and type.equals('itemName')">
+                    ITEM_NAME LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+        </where>
+    </sql>
 
 </mapper>
