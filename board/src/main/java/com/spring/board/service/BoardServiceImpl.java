@@ -47,15 +47,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public int ItemNoCheck(int itemNo) {
-        return boardMapper.ItemNoCheck(itemNo);
-    }
-
-    @Override
     public List<BoardDTO> itemSearch(HashMap<String, Object> map) {
         return boardMapper.itemSearch(map);
     }
-
 
     @Override
     public int getCount() {
