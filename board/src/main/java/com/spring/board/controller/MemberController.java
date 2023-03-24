@@ -39,26 +39,6 @@ public class MemberController {
         return "login";
     }
 
-
-    @PostMapping( "/login")
-    public String loginPOST(MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr){
-        log.info("Controller loginPOST");
-
-        HttpSession session = request.getSession();
-
-        MemberDTO login = memberService.getMemberAccount(memberDTO.getMemberId());
-
-        String failMessage = "아이디 혹은 비밀번호가 잘못 되었습니다.";
-
-        if (login == null) {
-            rttr.addFlashAttribute("loginFail", failMessage);
-            return "redirect:/login";
-        }
-
-        session.setAttribute("loginUser", login);
-        return "redirect:/";
-    }
-
     // 로그아웃
     @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
