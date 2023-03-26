@@ -1,9 +1,6 @@
 # 비품 관리 게시판
-<div style="text-align:center;">
 
-![video](https://user-images.githubusercontent.com/101630615/227762169-fb318989-93eb-4489-ac6d-b5379533e7e3.gif)
-
-</div>
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/101630615/227762444-79b06645-1b4b-48f2-9ea0-5d646e99e123.gif)
 
 
 
@@ -24,9 +21,10 @@
 ### 📒 TB ENTITY
 
 <br><br><br>
+<div style="text-align:center;">
 
-![TB_ENTITY](https://user-images.githubusercontent.com/101630615/227732095-54bfd97d-4444-4c53-bcf7-41b3afcba6e7.png)
-
+<img src="https://user-images.githubusercontent.com/101630615/227732095-54bfd97d-4444-4c53-bcf7-41b3afcba6e7.png">
+</div>
 
 <br><br><br>
 
@@ -34,7 +32,6 @@
 <table style="text-align:center;">
 <thead>
 <tr style="font-weight:bold; border-bottom:1px solid #000;">
-    <td colspan=2></td>
 </tr>
 </thaed>
 <tbody>
