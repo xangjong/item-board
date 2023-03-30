@@ -13,9 +13,7 @@ $(document).ready(function () {
 
     // 아이디 중복 확인 버튼 클릭 시
     $('#idCheckBtn').on('click', function () {
-
         memberId = $('#memberId').val();
-
         if(!memberId){
             alert("아이디를 입력해주세요.");
             return false;
@@ -47,6 +45,7 @@ $(document).ready(function () {
                     } // else
                 }
     }); // memberIdCheck
+
 
     // 가입 완료 버튼 클릭 시
     $('#submitBtn').on('click', function () {
