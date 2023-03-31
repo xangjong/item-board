@@ -14,13 +14,13 @@
   <style type="text/css">
     .text-primary { font-weight: bold; }
     .table-striped {margin-top:30px; color:#000; width:1080px;}
-    .success>th, .itemList>td {text-align: center; background: #2b669a;}
+    .tableth>th {text-align: center; background: #4cae4c; font-weight: bold; color:#fff;}
+    .itemList>td {text-align: center; background: #5cb85c;}
     .success>th:hover {text-align: center; background: #fff; color:#000;}
     .itemList>td>a { color:#fff;}
     .itemList>td>a:hover { color:#000; font-weight: bold;}
     #noList {text-align: center; color:#000; font-weight: bold; }
     tr.itemList:hover { color:#000; font-weight: bold;}
-    .itemName:hover { text-decoration: none; color:#000; font-size:14px; font-weight: bold;}
     .container {}
     .headerBox { display: flex; justify-content: space-between;}
     .titleBox { display: flex;  align-items: center; }
@@ -55,7 +55,7 @@
 
 
   <table class="table table-striped">
-  <tr class="success">
+  <tr class="tableth">
     <th>비품 번호</th>
     <th>비품 코드</th>
     <th>비품명</th>
@@ -64,17 +64,13 @@
     <th>가격</th>
     <th>등록일</th>
   </tr>
+    <tr >
 
-  <tr th:each="itemList:${list}" th:if="${!#lists.isEmpty(list)}" class="itemList btn-success">
+  <tr th:each="itemList:${list}" th:if="${!#lists.isEmpty(list)}" class="itemList btn-success"
+      th:onclick="|location.href='@{/detailItem/{itemNo}(itemNo=${itemList.itemNo})}'|">
     <td th:text="${itemList.itemNo}"></td>
     <td th:text="${itemList.itemCode}"></td>
-    <td>
-      <a th:href="@{/detailItem/{itemNo}(itemNo=${itemList.itemNo})}"
-         th:text="${itemList.itemName}"
-        th:title="${itemList.itemDetail}"
-         class="itemName"
-      ></a>
-    </td>
+    <td th:text="${itemList.itemName}"></td>
     <td th:text="${itemList.itemDetail}"></td>
     <td th:text="|${#numbers.formatInteger(itemList.itemQuantity, 0, 'COMMA')}|"></td>
     <td th:text="|${#numbers.formatInteger(itemList.itemPrice, 0, 'COMMA')}|"></td>
