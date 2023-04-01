@@ -15,9 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 @EnableWebSecurity        //spring security 를 적용한다는 Annotation
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     private final MemberServiceImpl memberService;
-
     private final AuthenticationFailureHandler customFailureHandler;
 
     @Override
@@ -45,18 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .accessDeniedPage("/accessDenied_page") // 권한이 없는 대상이 접속을시도했을 때
                 .and()
                 .csrf().disable();
-
     }
-
-    /**
-     * 로그인 인증 처리 메소드
-     * @param auth
-     * @throws Exception
-     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(new BCryptPasswordEncoder());
     }
-
-
 }
