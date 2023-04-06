@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- 백리향 jstl과 유사한 역할 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <head><meta charset="UTF-8">
   <title>Insert title here</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -57,9 +58,11 @@
   </table>
   <a href="/boardList" class="btn btn-success">목록</a>
   <button th:onclick="|location.href='@{/updateItem/(itemNo=${board.itemNo})}'|"
+          sec:authorize="isAuthenticated()"
           class="btn btn-primary float-end">수정</button>
   <button th:onclick="|location.href='@{/deleteItem/{itemNo}(itemNo=${board.itemNo})}'|"
-          class="btn btn-warning">삭제</button>
+          class="btn btn-warning"
+          sec:authorize="isAuthenticated()" >삭제</button>
 
 
 </div>
