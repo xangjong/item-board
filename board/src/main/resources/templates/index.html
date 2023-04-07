@@ -3,7 +3,7 @@
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <title>비품 관리 인덱스 페이지</title>
+  <title>비품 관리 페이지</title>
   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
   <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
@@ -17,16 +17,18 @@
     .navBox>a { border:none; text-decoration: none;}
     .navBox>a:hover { font-weight: bold; font-size:14px; color:#fff; background: #245580;}
     .titleBox {margin-top:60px;}
+    .btn-primary, .btn-success {margin-left:10px;}
   </style>
 </head>
 <body>
 <div class="container" align="center">
  <div class="headerBox">
    <div class="titleBox">
-     <h2 class="text-primary">비품 관리 인덱스 페이지</h2>
+     <h2 class="text-primary">📚 비품 관리</h2>
    </div>
    <div class="navBox">
-       <p th:text="${#authentication.name}"></p>
+       <br><br>
+<!--       <p th:text="${#authentication.name}"></p>-->
            <a href="/login" class="btn btn-success" sec:authorize="isAnonymous()">로그인</a>
            <a href="/signUp" class="btn btn-primary" sec:authorize="isAnonymous()" >회원 가입</a>
        <a href="/logout" class="btn btn-success" sec:authorize="isAuthenticated()">로그 아웃</a>
