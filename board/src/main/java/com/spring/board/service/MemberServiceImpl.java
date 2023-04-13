@@ -24,6 +24,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 
     @Transactional
     public void joinUser(MemberDTO memberDTO){
+
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDTO.setMemberPw(passwordEncoder.encode(memberDTO.getPassword()));
@@ -31,9 +32,6 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         // 권한 설정
         memberDTO.setMemberRole("USER");
 
-//        // 가입일, 수정일 설정
-//        memberDTO.setRegDateTime(LocalDate.parse(localTime));
-//        memberDTO.setModDateTime(LocalDate.parse(localTime));
 
         memberMapper.saveMember(memberDTO);
     }
@@ -42,11 +40,9 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
         //여기서 받은 유저 패스워드와 비교하여 로그인 인증
         MemberDTO memberDTO = memberMapper.getMemberAccount(memberId);
-
         if (memberDTO == null){
             throw new UsernameNotFoundException("계정 정보가 존재하지 않습니다.");
         }
-
         return memberDTO;
     }
 
