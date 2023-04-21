@@ -23,12 +23,6 @@ public class MemberController {
     private final MemberServiceImpl memberService;
     PasswordEncoder encoder;
 
-    /**
-     * localhost:8080 시 login 으로 redirect
-     * @return
-     */
-
-
     // 로그인 페이지
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
