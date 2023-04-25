@@ -32,7 +32,6 @@ public class BoardController {
                                @RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "type", defaultValue = "itemCode") String type,
                                @RequestParam(value = "keyword", required = false) String keyword,
-
                                Model model) throws Exception {
 
         PageVo pageVo = new PageVo(boardService.getCount(), page); // 모든 게시글 개수 구하기.
