@@ -45,8 +45,6 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         }
         return memberDTO;
     }
-
-
     @Override
     public MemberDTO getMemberAccount(String memberId) {
         return memberMapper.getMemberAccount(memberId);
