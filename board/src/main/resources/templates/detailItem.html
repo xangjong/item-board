@@ -59,7 +59,7 @@
   <button th:onclick="|location.href='@{/updateItem/(itemNo=${board.itemNo})}'|"
           sec:authorize="isAuthenticated()"
           class="btn btn-primary float-end">수정</button>
-  <button th:onclick="|location.href='@{/deleteItem/{itemNo}(itemNo=${board.itemNo})}'|"
+  <button onclick="confirm('정말 삭제하시겠습니까?')" th:onclick="|location.href='@{/deleteItem/{itemNo}(itemNo=${board.itemNo})}'|"
           class="btn btn-warning"
           sec:authorize="isAuthenticated()" >삭제</button>
 
