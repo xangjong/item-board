@@ -1,20 +1,15 @@
-/**
- * itemSearch.js
- */
+function performSearch(page, type, keyword) {
+    location.href = "boardList?page=" + encodeURIComponent(page) + "&type=" + encodeURIComponent(type) + "&keyword=" + encodeURIComponent(keyword);
+}
 
-$(document).on('click', '#btnSearch', function(e){
+$(document).ready(function () {
+    $('#searchForm').on('submit', function (event) {
+        event.preventDefault();
 
-    e.preventDefault();
+        let currentPage = 1;
+        let searchType = $('#type').val();
+        let searchKeyword = $('#keyword').val();
 
-    let url = "${pageContext.request.contextPath}/boardList";
-
-    url = url + "?type=" + $('#type').val();
-
-    url = url + "&keyword=" + $('#keyword').val();
-
-    location.href = url;
-
-    console.log(url);
-
+        performSearch(currentPage, searchType, searchKeyword);
+    });
 });
-
