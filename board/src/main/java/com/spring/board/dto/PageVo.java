@@ -31,6 +31,7 @@ public class PageVo {
 
     // 검색 키워드
     private String keyword;
+
     public PageVo(int totalCount, int page) {
 
         // 총 페이지 개수 구하기
